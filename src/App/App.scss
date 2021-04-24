@@ -2,13 +2,13 @@
 @import "~@fortawesome/fontawesome-free/css/all.min.css";
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 
-body {
+.App {
   margin-top: 175px;
   background-color: lavender;
   font-family: 'Lato', sans-serif;
   color: rgb(83, 77, 77);
 }
 
-form {
+Form {
   width: 55%;
 }
