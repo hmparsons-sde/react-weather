@@ -1,36 +1,36 @@
 import React, { useState } from 'react';
+import {
+  Form, FormGroup, Input
+} from 'reactstrap';
+import weatherData from '../helpers/data/weatherData';
+import WeatherCard from '../Components/WeatherApp';
 import './App.scss';
 
 function App() {
-  const [domWriting, setDomWriting] = useState('Nothing Here!');
-
-  const handleClick = (e) => {
-    console.warn(`You clicked ${e.target.id}`);
-    setDomWriting(`You clicked ${e.target.id}! Check the Console!`);
+  const [weatherArray, setWeatherArray] = useState([]);
+  const handleEnterPress = (e) => {
+    if (e.charCode === 13) {
+      e.preventDefault();
+      const city = e.target.value;
+      weatherData(city).then((response) => {
+        weatherArray.push(response);
+        setWeatherArray([...weatherArray]);
+      });
+    }
   };
-
   return (
     <div className='App'>
-      <h2>INSIDE APP COMPONENT</h2>
-      <div>
-        <button
-          id='this-button'
-          className='btn btn-info'
-          onClick={handleClick}
-        >
-          I am THIS button
-        </button>
-      </div>
-      <div>
-        <button
-          id='that-button'
-          className='btn btn-primary mt-3'
-          onClick={handleClick}
-        >
-          I am THAT button
-        </button>
-      </div>
-      <h3>{domWriting}</h3>
+      <header>
+        <h1 className='header-text'>Do you need a jacket?</h1>
+      </header>
+        <WeatherCard weatherArray={weatherArray}/>
+        <div className='form-container'>
+          <Form>
+            <FormGroup>
+                <Input type="text" name="city" id="city" placeholder="Enter city name" onKeyPress={handleEnterPress}/>
+            </FormGroup>
+          </Form>
+        </div>
     </div>
   );
 }
