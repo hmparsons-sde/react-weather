@@ -28,6 +28,7 @@ function Weather() {
           e.preventDefault();
           getWeather();
         }}>
+          <h2>Do you need a jacket?</h2>
           <input
             type="text"
             placeholder="City Name"
