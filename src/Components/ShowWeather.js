@@ -1,15 +1,26 @@
 import React from 'react';
+import {
+  Card,
+  CardTitle,
+  CardText,
+  CardBody
+} from 'reactstrap';
+import PropTypes from 'prop-types';
 
-function WeatherDisplay(props) {
-  // eslint-disable-next-line react/prop-types
-  const { temp, desc, name } = props;
-  return (
-    <div className="ShowWeather">
-      <h1>{name}</h1>
-      <h1>{temp}</h1>
-      <p>{desc}</p>
-    </div>
-  );
-}
+const ShowWeather = ({ ...weatherObj }) => (
+  <Card id="weather-card"
+  className="shadow rounded">
+    <CardBody>
+      <CardTitle tag="h5">{weatherObj.name}</CardTitle>
+      <CardText>{weatherObj.main.temp}F | {weatherObj.weather[0].description}</CardText>
+    </CardBody>
+  </Card>
+);
 
-export default WeatherDisplay;
+ShowWeather.propTypes = {
+  name: PropTypes.string,
+  temp: PropTypes.number,
+  description: PropTypes.string
+};
+
+export default ShowWeather;
