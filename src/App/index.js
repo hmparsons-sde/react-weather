@@ -26,8 +26,6 @@ function App() {
     setUserInput(e.target.value);
   };
 
-  console.warn(weather);
-
   return (
     <div>
       <Form
